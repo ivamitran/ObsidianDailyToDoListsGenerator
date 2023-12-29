@@ -82,10 +82,14 @@ public class DateFunctions {
         return sequentialDates;
     }
 
-    // [0]: Contains the dayOfMonth string
-    // [1]: Contains the month string
-    // [2]: Contains the year string
-    public static String[] returnSequentialDateRelevantStrings(LocalDate date)
+    /**
+     *
+     * @param date the LocalDate object of which the date relevant strings will be generated from
+     * @return [0]: Contains the dayOfMonth string (e.g., "10")
+     *         [1]: Contains the abbreviated month string (e.g., "jan")
+     *         [2]: Contains the year string (e.g., "2023")
+     */
+    public static String[] returnLocalDateRelevantStrings(LocalDate date)
     {
         String[] dateStrings = new String[3];
         dateStrings[0] = Integer.toString(date.getDayOfMonth());
@@ -160,7 +164,7 @@ public class DateFunctions {
         List<LocalDate> sequentialDates = generateSequentialDates(startDate, endDate);
         for(LocalDate localDate : sequentialDates)
         {
-            String[] dateStrings = returnSequentialDateRelevantStrings(localDate);
+            String[] dateStrings = returnLocalDateRelevantStrings(localDate);
             System.out.printf("Day of Month: %s, Month: %s, Year: %s\n", dateStrings[0], dateStrings[1], dateStrings[2]);
         }
     }

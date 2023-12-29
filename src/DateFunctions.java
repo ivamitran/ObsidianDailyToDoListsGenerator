@@ -4,9 +4,45 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class DateFunctions {
+
+    public static LocalDate promptForDate()
+    {
+        boolean validDate = false; // assume false initially
+
+        int year;
+        int month;
+        int dayOfMonth;
+
+        LocalDate localDate = null;
+
+        Scanner keyboard = new Scanner(System.in);
+
+        while(!validDate)
+        {
+            System.out.print("Please enter year(e.g., 2023): ");
+            year = keyboard.nextInt();
+            System.out.print("Please enter month as number(e.g., 12 for December): ");
+            month = keyboard.nextInt();
+            System.out.print("Please enter day of month(e.g., 28): ");
+            dayOfMonth = keyboard.nextInt();
+
+            if(dateValidAsLocalDate(year, month, dayOfMonth))
+            {
+                localDate = LocalDate.of(year, month, dayOfMonth);
+                validDate = true;
+            }
+            else
+            {
+                System.out.println("The date entered is not valid, please try again.");
+            }
+        }
+
+        return localDate;
+    }
 
     public static boolean dateValidAsLocalDate(int year, int month, int dayOfMonth)
     {
@@ -117,7 +153,11 @@ public class DateFunctions {
 
     // this main method is simply for testing the methods of this class
     public static void main(String[] args) {
-        List<LocalDate> sequentialDates = generateSequentialDates(LocalDate.of(2023, 12, 1), LocalDate.of(2024, 1, 20));
+
+        LocalDate startDate = promptForDate();
+        LocalDate endDate = promptForDate();
+
+        List<LocalDate> sequentialDates = generateSequentialDates(startDate, endDate);
         for(LocalDate localDate : sequentialDates)
         {
             String[] dateStrings = returnSequentialDateRelevantStrings(localDate);

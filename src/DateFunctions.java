@@ -23,12 +23,12 @@ public class DateFunctions {
 
         while(!validDate)
         {
-            System.out.print("Please enter year(e.g., 2023): ");
-            year = keyboard.nextInt();
             System.out.print("Please enter month as number(e.g., 12 for December): ");
             month = keyboard.nextInt();
             System.out.print("Please enter day of month(e.g., 28): ");
             dayOfMonth = keyboard.nextInt();
+            System.out.print("Please enter year(e.g., 2023): ");
+            year = keyboard.nextInt();
 
             if(dateValidAsLocalDate(year, month, dayOfMonth))
             {

@@ -28,8 +28,41 @@ public class DatedToDoListNotesFramework {
             // generate the note content
             String[] specificNoteContent = DatedToDoListNote.returnSpecificNoteContent(localDates.get(i));
 
-            // datedToDoListNotes[i] = new DatedToDoListNote(fileName, );
+            datedToDoListNotes[i] = new DatedToDoListNote(fileName, specificNoteContent, dayOfMonth, abbreviatedMonth, year);
         }
     }
 
+    void generateFiles()
+    {
+        for(DatedToDoListNote datedToDoListNote : datedToDoListNotes)
+        {
+            datedToDoListNote.generateNoteFile();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+
+        boolean validStartAndEndDatesEntered = false; // assume false initially
+
+        // before moving forward, have to make sure that the end date comes after the start date
+        while(!validStartAndEndDatesEntered)
+        {
+            System.out.println("***Enter information for the start date***");
+            startDate = DateFunctions.promptForDate();
+            System.out.println("***Enter information for the end date***");
+            endDate = DateFunctions.promptForDate();
+
+            if(startDate.isBefore(endDate))
+            {
+                validStartAndEndDatesEntered = true;
+            }
+        }
+
+        DatedToDoListNotesFramework datedToDoListNotesFramework = new DatedToDoListNotesFramework(startDate, endDate);
+        datedToDoListNotesFramework.generateFiles();
+        return;
+    }
 }

@@ -99,7 +99,7 @@ public class DateFunctions {
         return dateStrings;
     }
 
-    private static String returnAbbreviatedStringOfMonth(Month month)
+    public static String returnAbbreviatedStringOfMonth(Month month)
     {
         String abbreviatedMonth;
 
